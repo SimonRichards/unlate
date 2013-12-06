@@ -24,9 +24,7 @@ public class MainActivity extends Activity {
     }
     
     public void startNavigating(View view) {
-    	String uri =
-    			"https://maps.google.com/maps?saddr=-43.536,172.706&daddr=-43.48179,172.68320+to:-43.526,172.65";
-    			//"http://maps.google.com/maps?saddr="+"-43.536,172.706"+"&daddr="+"-43.526,172.65 to:43.48179,172.68320";
+    	String uri = "http://maps.google.com/maps?saddr="+"-43.536,172.706"+"&daddr="+"-43.526,172.65&daddr=-43.48179,172.68320";
     	Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
     	intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
     	startActivity(intent);
