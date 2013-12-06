@@ -1,0 +1,3 @@
+[submodule "Osmand"]
+	path = Osmand
+	url = ./Osmand
