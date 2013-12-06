@@ -33,6 +33,6 @@
         android:layout_alignTop="@+id/destinationImage"
         android:layout_marginRight="14dp"
         android:text="Go"
-        android:onClick="startNavigating" />
+        android:onClick="goToDestination" />
 
 </RelativeLayout>
