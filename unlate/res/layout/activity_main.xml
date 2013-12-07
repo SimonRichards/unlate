@@ -35,4 +35,14 @@
         android:text="Go"
         android:onClick="startNavigating" />
 
+    <EditText
+        android:id="@+id/routeTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/destinationBox"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/destinationBox"
+        android:ems="10"
+        android:inputType="textMultiLine" />
+
 </RelativeLayout>
