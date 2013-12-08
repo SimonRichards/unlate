@@ -1,5 +1,7 @@
 package com.unlate;
 
+import java.io.Console;
+import java.io.IOException;
 import java.io.InputStream;
 
 import org.apache.http.HttpEntity;
@@ -7,6 +9,8 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+
+import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -33,6 +37,7 @@ public class MainActivity extends Activity {
     }
     
     public void startNavigating(View view) {
+        (new Thread(new HelloRunnable())).start();
     	String url = "http://arcgisdev.ecan.govt.nz/arcgis/rest/services/OSM/OSMNetwork/NAServer/Route/solve?stops=172.706%2C-43.536%3B172.68320%2C-43.48179%3B172.65%2C-43.526&barriers=&polylineBarriers=&polygonBarriers=&outSR=4326&ignoreInvalidLocations=true&accumulateAttributeNames=&impedanceAttributeName=Length&restrictionAttributeNames=Oneway&attributeParameterValues=&restrictUTurns=esriNFSBAllowBacktrack&useHierarchy=false&returnDirections=true&returnRoutes=true&returnStops=false&returnBarriers=false&returnPolylineBarriers=false&returnPolygonBarriers=false&directionsLanguage=en&directionsStyleName=&outputLines=esriNAOutputLineTrueShapeWithMeasure&findBestSequence=false&preserveFirstStop=false&preserveLastStop=false&useTimeWindows=false&startTime=0&outputGeometryPrecision=&outputGeometryPrecisionUnits=esriDecimalDegrees&directionsOutputType=esriDOTComplete&directionsTimeAttributeName=&directionsLengthUnits=esriNAUMiles&returnZ=false&f=html";
     	HttpClient httpclient = new DefaultHttpClient();
         HttpGet httpget = new HttpGet(url); 
@@ -50,5 +55,19 @@ public class MainActivity extends Activity {
                 instream.close();
             }
         } catch (Exception e) {}
+    }
+    
+    public class HelloRunnable implements Runnable {
+
+        public void run() {
+        	String SENDER_ID = "637858757068";
+        	GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(getApplicationContext());
+        	try {
+    			String registrationId = gcm.register(SENDER_ID);
+    			System.out.println(registrationId);
+    		} catch (IOException e1) {
+    			e1.printStackTrace();
+    		}
+        }
     }
 }
